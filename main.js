@@ -1,6 +1,10 @@
 // timey.js
 // 2018 Julian Lepinski
 
+//////////////////////////
+// extremely core logic //
+//////////////////////////
+
 if (process.argv.length === 3 && process.argv[0].indexOf("node") !== -1) {
 	process.argv.shift();
 }
@@ -25,6 +29,10 @@ if (process.argv.length === 2) {
 	process.exit(1);
 }
 
+//////////////////////////////
+// conversion & convenience //
+//////////////////////////////
+
 function processHumanTime(timeIn) {
 	var msComponent = 0;
 	var sComponent = 0;
@@ -38,10 +46,10 @@ function processHumanTime(timeIn) {
 	}
 	var colonSplit = timeIn.split(":");
 	sComponent = parseInt(colonSplit.pop());
-	if (colonSplit) {
+	if (colonSplit.length > 0) {
 		mComponent = parseInt(colonSplit.pop());
 	}
-	if (colonSplit) {
+	if (colonSplit.length > 0) {
 		hComponent = parseInt(colonSplit.pop());
 	}
 	var timeInMS = (hComponent * 60 * 60000) + (mComponent * 60000) + (sComponent * 1000) + msComponent;
@@ -74,3 +82,14 @@ function padToDigits(numberIn, digits) {
 	}
 	return numberIn;
 }
+
+/////////////////////////
+// exports for testing //
+/////////////////////////
+
+module.exports = {
+  pad2: pad2,
+  padToDigits: padToDigits,
+  processHumanTime: processHumanTime,
+  processMilliseconds: processMilliseconds
+};

@@ -21,3 +21,11 @@ $ timey 06:34:20.001
 ```
 
 Timey will try to guess whether the input time is in human-readable or millisecond time.
+
+### Testing
+
+```timey.js``` includes some minimally-useful unit tests; to run them:
+
+```
+$ npm test
+```

@@ -4,6 +4,16 @@
 
 ```timey.js``` is a small dependency-free command line module written in node.js to convert between milliseconds and human-readable time.
 
+### Installation
+
+Grab the ```timey.js``` project and place it somewhere semi-permanent on your system, then run:
+
+```
+$ npm install -g .
+```
+
+This will register ```timey``` as a CLI command.
+
 ### Usage
 
 Install ```timey.js``` globally, and run it as follows to convert from milliseconds:
@@ -27,5 +37,8 @@ Timey will try to guess whether the input time is in human-readable or milliseco
 ```timey.js``` includes some minimally-useful unit tests; to run them:
 
 ```
+$ npm install
 $ npm test
 ```
+
+(```timey.js``` isn't packaged with its dev dependencies by default, so ```npm install``` is necessary to grab them before running any tests.)

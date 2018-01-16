@@ -32,6 +32,12 @@ $ timey 06:34:20.001
 
 Timey will try to guess whether the input time is in human-readable or millisecond time.
 
+### What is ```~~ (a / b)```
+
+The ```~``` operator is javascript bitwise operator that flips the bits of the number it operates on; in practice, a double-tilde has the effect of performing an integer division of ```a``` by ```b```, and it does this slightly faster than ```Math.floor()``` does. 
+
+More importantly, it's super-inscrutable and difficult to parse when reading code.
+
 ### Testing
 
 ```timey.js``` includes some minimally-useful unit tests; to run them:

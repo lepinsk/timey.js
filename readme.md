@@ -1,4 +1,4 @@
 # timey.js
 
-<extremely command-line voice>
+*extremely command-line voice*
 

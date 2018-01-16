@@ -6,7 +6,7 @@
 
 ### Installation
 
-Grab the ```timey.js``` project and place it somewhere semi-permanent on your system, then run:
+Grab the ```timey.js``` project and place it somewhere semi-permanent on your system, then, from the project folder, run:
 
 ```
 $ npm install -g .
@@ -42,3 +42,7 @@ $ npm test
 ```
 
 (```timey.js``` isn't packaged with its dev dependencies by default, so ```npm install``` is necessary to grab them before running any tests.)
+
+### License
+
+MIT, I guess?

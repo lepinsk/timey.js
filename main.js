@@ -6,6 +6,8 @@
 //////////////////////////
 
 if (process.argv.length === 3 && process.argv[0].indexOf("node") !== -1) {
+	// when running this with the "node main.js xxx" command, 
+	// we pop off the first param so the next part works properly
 	process.argv.shift();
 }
 
@@ -33,6 +35,12 @@ if (process.argv.length === 2) {
 // conversion & convenience //
 //////////////////////////////
 
+/**
+ * Processes a human-readable (i.e. 03:04.20) time string and 
+ * returns the time in milliseconds.
+ * @param {string} timeIn - A formatted time value
+ * @returns {integer} The time in milliseconds
+ */
 function processHumanTime(timeIn) {
 	var msComponent = 0;
 	var sComponent = 0;
@@ -57,6 +65,12 @@ function processHumanTime(timeIn) {
 	return timeInMS;
 }
 
+/**
+ * Processes a time in millseconds and returns
+ * it in a human-readable format
+ * @param {integer} msIn - A time value in milliseconds
+ * @returns {string} A formatted time string
+ */
 function processMilliseconds(msIn) {
 	var hComponent = ~~(msIn / (60 * 60000));
 	msIn -= hComponent * (60 * 60000);
@@ -71,10 +85,23 @@ function processMilliseconds(msIn) {
 	return humanReadable;
 }
 
+/**
+ * Left-pads a number with zeroes to two digits;
+ * returns the number untouched if it's >= 2 digits.
+ * @param {integer} numberIn - The number to pad
+ * @returns {string} The number, padded to 2 digits
+ */
 function pad2(numberIn) {
 	return padToDigits(numberIn, 2);
 }
 
+/**
+ * Left-pads a number with zeroes to an arbitrary number of digits;
+ * returns the number untouched if its length is >= the digits value.
+ * @param {integer} numberIn - The number to pad
+ * @param {integer} digits – The number of digits to pad to
+ * @returns {string} The number, padded
+ */
 function padToDigits(numberIn, digits) {
 	numberIn = "" + numberIn;
 	while (numberIn.length < digits) {

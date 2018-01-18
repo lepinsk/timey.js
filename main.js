@@ -13,14 +13,23 @@ if (process.argv.length === 3 && process.argv[0].indexOf("node") !== -1) {
 
 if (process.argv.length === 2) {
 	var timeIn = process.argv[1];
-	if (timeIn.indexOf(":") !== -1 || timeIn.indexOf(".") !== -1) {
+	var inputType = parseTimeInput(timeIn);
+	if (inputType === "human") {
 		var timeInOrig = timeIn;
 		var timeInMS = processHumanTime(timeIn);
 		console.log(timeInOrig + " in milliseconds is " + timeInMS);
-	} else {
+	} else if (inputType === "ms") {
 		var timeInOrig = timeIn;
 		var timeInHuman = processMilliseconds(timeIn);
 		console.log(timeInOrig + "ms in human time is " + timeInHuman);
+	} else {
+		console.log("whoops: timey can't interpret '" + timeIn + "'");
+		console.log("timey expects a single argument, i.e.");
+		console.log("");
+		console.log("   timey 01:02:03");
+		console.log("or");
+		console.log("   timey 230000");
+		process.exit(1);
 	}
 } else {
 	console.log("whoops: timey expects a single argument, i.e.");
@@ -110,6 +119,30 @@ function padToDigits(numberIn, digits) {
 	return numberIn;
 }
 
+/**
+ * Parses a time value to determine whether it is 
+ * formatted, or milliseconds (or invalid)
+ * @param {string} timeInput - The input to parse
+ * @returns {string} "human" if human input, "ms" if milliseconds,
+ * and null if invalid / unparseable
+ */
+function parseTimeInput(timeInput) {
+	// we're looking for a string that is digit groups separated by at least
+	// one colon, and optionally one final group separated by a period
+	var humanRx = /(\d{1,2}:)?\d{1,2}:\d{1,2}(\.\d+)?/g;
+	
+	// we're looking for a string that is *only* digits
+	var msRx = /^\d+$/g;
+
+	if (humanRx.test(timeInput)) {
+		return "human";
+	} else if (msRx.test(timeInput)) {
+		return "ms";
+	} else {
+		return;
+	}
+}
+
 /////////////////////////
 // exports for testing //
 /////////////////////////
@@ -118,5 +151,6 @@ module.exports = {
   pad2: pad2,
   padToDigits: padToDigits,
   processHumanTime: processHumanTime,
-  processMilliseconds: processMilliseconds
+  processMilliseconds: processMilliseconds,
+  parseTimeInput: parseTimeInput
 };

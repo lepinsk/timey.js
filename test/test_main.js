@@ -56,3 +56,42 @@ describe("human time conversion", function(){
 		done();
 	});	
 });
+
+describe("input testing", function(){
+	it("accepts a xx:yy string as human", function(done){
+		var result = main.parseTimeInput("12:34");
+		result.should.equal("human");
+		done();
+	});
+
+	it("accepts a xx:yy.abc string as human", function(done){
+		var result = main.parseTimeInput("12:34.567");
+		result.should.equal("human");
+		done();
+	});
+
+	it("accepts a ww:xx:yy.abc string as human", function(done){
+		var result = main.parseTimeInput("03:12:34.567");
+		result.should.equal("human");
+		done();
+	});
+
+	it("accepts a ww:xx:yy string as human", function(done){
+		var result = main.parseTimeInput("03:12:34");
+		result.should.equal("human");
+		done();
+	});	
+
+	it("accepts a numeric string as ms", function(done){
+		var result = main.parseTimeInput("1234567");
+		result.should.equal("ms");
+		done();
+	});		
+
+	it("rejects a bunch of non-valid input", function(done){
+		should.equal(main.parseTimeInput(""), null);
+		should.equal(main.parseTimeInput("abc"), null);
+		should.equal(main.parseTimeInput("01:ab"), null);
+		done();
+	});		
+});

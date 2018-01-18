@@ -5,11 +5,9 @@
 // extremely core logic //
 //////////////////////////
 
-if (process.argv.length === 3 && process.argv[0].indexOf("node") !== -1) {
-	// when running this with the "node main.js xxx" command, 
-	// we pop off the first param so the next part works properly
-	process.argv.shift();
-}
+// when running this with the "node main.js xxx" command, 
+// we pop off the first param so the next part works properly
+if (/node/i.test(process.argv[0])) process.argv.shift();
 
 if (process.argv.length === 2) {
 	var timeIn = process.argv[1];
